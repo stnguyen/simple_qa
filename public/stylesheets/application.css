@@ -1,7 +1,7 @@
 body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  font-size: 80%;
 }
 
 a img {
@@ -19,12 +19,13 @@ a {
 }
 
 #container {
-  width: 75%;
+  width: 960px;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  min-height: 450px;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -72,4 +73,88 @@ a {
 
 .error_messages ul {
   margin: 0;
+}
+
+#question-list {
+	float: left;
+	margin-bottom: 40px;
+	width: 735px;
+}
+
+.question-summary {
+	border-bottom: 1px dotted #999;
+	overflow: hidden;
+	padding: 11px 0px;
+	width: 730px;
+	float: left;
+}
+
+.votes-count, .votes-point, .answers-count{
+	float: left;
+	margin: 0 3px 0 0;
+	padding: 5px;
+	width: 38px;
+	height: 38px;
+	color: #555;
+	text-align: center;
+}
+
+.votes-count {
+	margin-left: 10px;
+	background: #EEE;
+}
+
+.votes-point {
+	color: #fff;
+}
+
+.answers-count {
+	width: 50px;
+	margin-right: 20px;
+}
+
+.question-summary .summary {
+	width: 520px;
+	float: left;
+	height: 38px;
+}
+
+.question-summary h3 {
+	font-size: 130%;
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.question-summary .summary a {
+	color: #07C;
+	text-decoration: none;
+}
+
+.question-summary .summary a:hover {
+	text-decoration: underline;
+}
+
+.question-summary .created {
+}
+
+.positive {
+	background: #75845C;
+}
+
+.negative {
+	background: #9A4444;
+}
+
+.box {
+	float: left;
+	margin: 0 3px 0 0;
+	padding: 5px;
+	width: 48px;
+	height: 38px;
+}
+
+.count {
+	height: 25px;
+	font-size: 190%;
+	font-weight: bold;
 }
