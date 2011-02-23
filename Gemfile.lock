@@ -45,6 +45,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.11)
+      rake
     mongo (1.2.3)
       bson (>= 1.2.3)
     mongoid (2.0.0.rc.6)
@@ -90,6 +92,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext (~> 1.2)
   devise
+  mocha
   mongoid (= 2.0.0.rc.6)
   nifty-generators
   rails (= 3.0.4)

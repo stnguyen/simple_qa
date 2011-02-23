@@ -8,3 +8,4 @@ gem 'bson_ext', '~> 1.2'
 gem 'nifty-generators'
 gem 'voteable_mongoid'
 gem 'devise'
+gem "mocha", :group => :test
