@@ -1,0 +1,2 @@
+= Simple Q&A Rails 3 app using voteable_mongoid
+This is a demo app to illustrate how to use the voteable_mongoid gem (http://github.com/vinova/voteable_mongoid)
