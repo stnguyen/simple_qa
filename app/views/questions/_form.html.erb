@@ -1,0 +1,29 @@
+<% form_for @question do |f| -%>
+	<% if @question.errors.any? %>
+	  <div class="error_messages">
+	      <h2>
+	          <%= pluralize(@question.errors.count, "error") %>
+	          prohibited this user from being saved:
+	      </h2>
+	      <p>There were problems with the following fields</p>
+	      <ul>
+	          <% @question.errors.full_messages.each do |error| %>
+	            <li><%= error %></li>
+	          <% end %>
+	      </ul>
+	  </div>
+	<% end %>
+
+	<div class="form-field">
+		<%= f.label :title %><br/>
+		<%= f.text_field :title %>
+	</div>
+	<div class="form-field">
+		<%= f.label :body %><br/>
+		<%= f.text_area :body %>
+	</div>	
+	<div class="actions">
+		<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+		or <%= link_to "Cancel", questions_path %>
+	</div>
+<% end -%>

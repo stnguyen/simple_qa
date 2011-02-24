@@ -9,7 +9,12 @@ a img {
 }
 
 a {
-  color: #0000FF;
+	color: #07C;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .clear {
@@ -25,7 +30,7 @@ a {
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
-  min-height: 450px;
+	height: 1000px;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -123,15 +128,6 @@ a {
 	font-size: 130%;
 	margin: 0;
 	margin-bottom: 10px;
-}
-
-.question-summary .summary a {
-	color: #07C;
-	text-decoration: none;
-}
-
-.question-summary .summary a:hover {
-	text-decoration: underline;
 }
 
 .question-summary .created {

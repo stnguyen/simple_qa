@@ -1,4 +1,7 @@
 <h1>Questions</h1>
+<h3><%= link_to "Raise a new one", new_question_path %></h3>
+
+<h2>Most popular questions</h2>
 <dev id="question-list">
 	<%= render :partial => :question, :collection => @questions %>
 </div>

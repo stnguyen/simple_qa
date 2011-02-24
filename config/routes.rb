@@ -1,6 +1,6 @@
 SimpleQa::Application.routes.draw do
   resources :questions
-
+  root :to => "questions#index"
   devise_for :users
 
   # The priority is based upon order of creation:
