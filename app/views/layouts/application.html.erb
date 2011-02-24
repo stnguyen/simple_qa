@@ -27,8 +27,6 @@
 				<% end %>
 			</ul>
 			
-			<hr/>
-			
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
@@ -40,8 +38,8 @@
 			<!-- footer -->
 			<hr/>
 			<p>
-			Copyright © 2011 <%= link_to "Stefan N.", "http://vinova.sg"%>. 
-			Site template is based on <%= link_to "stackoverflow.com", "http://stackoverflow.com" %>
+			Copyright © 2011 Stefan Nguyen (<%= link_to "vinova.sg", "http://vinova.sg"%>).
+			Theme color is based on <%= link_to "stackoverflow.com", "http://stackoverflow.com" %>
 			</p>
     </div>
   </body>
