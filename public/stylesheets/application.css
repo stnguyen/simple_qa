@@ -30,7 +30,6 @@ a:hover {
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
-	height: 1000px;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -81,9 +80,7 @@ a:hover {
 }
 
 #question-list {
-	float: left;
 	margin-bottom: 40px;
-	width: 735px;
 }
 
 .question-summary {
@@ -91,7 +88,6 @@ a:hover {
 	overflow: hidden;
 	padding: 11px 0px;
 	width: 730px;
-	float: left;
 }
 
 .votes-count, .votes-point, .answers-count{
@@ -153,4 +149,16 @@ a:hover {
 	height: 25px;
 	font-size: 190%;
 	font-weight: bold;
+}
+
+#nav {
+	list-style: none;
+}
+
+#nav li {
+	display: inline;
+}
+
+#logo a {
+	color: black;
 }

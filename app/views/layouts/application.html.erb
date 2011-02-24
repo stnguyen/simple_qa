@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title>Q&A using votable_mongoid gem</title>
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container">
+			<h1 id="logo"><%= link_to "Q&A System", root_path %></h1>
+			
+			<!-- navigation bar -->
+			<ul id="nav">
+				<% if current_user %>
+					Wanna ask something? You can
+					<li><%= link_to "Raise a new question", new_question_path %></li>
+					, view list of 
+					<li><%= link_to "Your questions", "user_path(current_user)" %></li>	
+					or 		
+					<li><%= link_to "Log out", destroy_user_session_path %></li>	
+				<% else %>
+					Please
+					<li><%= link_to "Log in", new_user_session_path %></li>
+					or <li><%= link_to "Sign up", new_user_registration_path %></li>
+					to raise a question.
+				<% end %>
+			</ul>
+			
+			<hr/>
+			
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+		
+			<!-- content -->
+			<%= yield %>
+			
+			<!-- footer -->
+			<hr/>
+			<p>
+			Copyright © 2011 <%= link_to "Stefan N.", "http://vinova.sg"%>. 
+			Site template is based on <%= link_to "stackoverflow.com", "http://stackoverflow.com" %>
+			</p>
     </div>
   </body>
 </html>
