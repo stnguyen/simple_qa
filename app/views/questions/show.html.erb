@@ -1,4 +1,8 @@
 <h2><%= @question.title %></h2>
 <p><%= @question.body %></p>
 
-<%= link_to "Back to questions list", questions_path %>
+<p>
+	<%= link_to "Edit", edit_question_path(@question) %> |
+	<%= link_to "View all", questions_path %> |
+	<%= link_to "Delete", @question, :confirm => "Are you sure?", :method => :delete %>
+</p>
