@@ -1,5 +1,6 @@
 SimpleQa::Application.routes.draw do
   resources :questions
+  match 'questions/:id/vote/:value' => 'questions#make_vote', :as => :vote_question
 
   root :to => "questions#index"
 

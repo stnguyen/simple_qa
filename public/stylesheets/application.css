@@ -163,3 +163,11 @@ a:hover {
 #logo a {
 	color: black;
 }
+
+.question-detail {
+	margin: 5px;
+}
+
+.question-detail h2{
+	font-size: 200%;
+}
