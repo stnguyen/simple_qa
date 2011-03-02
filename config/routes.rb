@@ -1,4 +1,12 @@
 SimpleQa::Application.routes.draw do
+  get "comments/create"
+
+  get "comments/destroy"
+
+  get "comments/make_vote"
+
+  get "comments/unvote"
+
   resources :questions
   match 'questions/:id/vote/:value' => 'questions#make_vote', :as => :vote_question
 
