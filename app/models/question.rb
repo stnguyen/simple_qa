@@ -1,5 +1,6 @@
 class Question
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Voteable
   
   field :title, :type => String

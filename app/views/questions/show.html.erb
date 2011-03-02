@@ -31,8 +31,34 @@
 					:method => :delete, :remote => :true, :class => 'alert' %>
 		<% end %>
 	<% else %>
-		Please <%= link_to "log in", new_user_session_path %> to vote or write comment.<br/>
+		Please <%= link_to "log in", new_user_session_path %> to vote or answer the question.<br/>
 	<% end %>
 </div>
 
-<h3>Comments</h3>
+<h3>Answers</h3>
+<%= render :partial => "answers/answer", :collection => @question.answers %>
+
+<% form_for [@question, @answer] do |f| -%>
+	<% if @answer.errors.any? %>
+	  <div class="error_messages">
+	      <h2>
+	          <%= pluralize(@answer.errors.count, "error") %>
+	          prohibited this user from being saved:
+	      </h2>
+	      <p>There were problems with the following fields</p>
+	      <ul>
+	          <% @answer.errors.full_messages.each do |error| %>
+	            <li><%= error %></li>
+	          <% end %>
+	      </ul>
+	  </div>
+	<% end %>
+
+	<div class="form-field">
+		<%= f.label :content, "Write your answer" %><br/>
+		<%= f.text_area :content %>
+	</div>	
+	<div class="actions">
+		<%= f.submit "Submit", :disable_with => 'Submitting...' %>
+	</div>
+<% end -%>
