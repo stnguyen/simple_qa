@@ -8,13 +8,27 @@
 
 <div id="actions">
 	<% if user_signed_in? %>
-		<%= link_to "Vote up", vote_question_path(@question, :up) %> |	
-		<%= link_to "Vote down", vote_question_path(@question, :down) %>
+		<%- voted = current_user.vote_value(@question) %>
+		
+		<% if voted %>
+			<%= link_to "Unvote", vote_question_path(@question, :unvote)%> | 
+			
+			<% if voted == :up %>
+				Vote up | 
+				<%= link_to "Vote down", vote_question_path(@question, :down) %>
+			<% else %>
+				<%= link_to "Vote up", vote_question_path(@question, :up) %> | 
+				Vote down
+			<% end %>
+		<% else %>
+			<%= link_to "Vote up", vote_question_path(@question, :up) %> |	
+			<%= link_to "Vote down", vote_question_path(@question, :down) %>
+		<% end %>
 		
 		<% if current_user.id == @question.user.id %>
 			 | <%= link_to "Edit", edit_question_path(@question) %> |
 			<%= link_to "Delete", @question, :confirm => "Are you sure?", 
-					:method => :delete, :remote => :true, :class => 'alert' %> | 
+					:method => :delete, :remote => :true, :class => 'alert' %>
 		<% end %>
 	<% else %>
 		Please <%= link_to "log in", new_user_session_path %> to vote or write comment.<br/>
