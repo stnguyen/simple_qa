@@ -4,7 +4,9 @@ class Answer
   
   field :content, :type => String
   
-  referenced_in :question
+  embedded_in :question
+  references_one :user
+  referenced_in :user
   
   vote_point self, :up => +1, :down => -2
   vote_point Question, :up => +2, :down => -1

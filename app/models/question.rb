@@ -8,7 +8,9 @@ class Question
   validates :title, :presence => true, :length => { :minimum => 10 }
   validates :body, :presence => true 
   
-  references_many :answers
+  embeds_many :answers
+  references_one :user
+  referenced_in :user
   
   vote_point self, :up => +1, :down => -1
 end
