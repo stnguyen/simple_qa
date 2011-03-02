@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @questions = Question.all
+    @questions = Question.desc(:votes_point)
   end
 
   def new
@@ -14,16 +14,26 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
     
     if @question.save
-      redirect_to question_path(@question), :notice => "Your question has been submitted successfully!"
+      redirect_to question_path(@question), 
+                  :notice => "Your question has been submitted successfully!"
     else
       render "new"
     end
   end
 
   def edit
+    @question = Question.find(params[:id])
   end
 
   def update
+    @question = Question.find(params[:id])
+    
+    if @question.update_attributes(params[:question])
+      redirect_to question_path(@question), 
+                  :notice => "Your question has been updated successfully!"
+    else
+      render "edit"
+    end
   end
 
   def show
