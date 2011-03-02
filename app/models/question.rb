@@ -9,7 +9,6 @@ class Question
   validates :body, :presence => true 
   
   embeds_many :answers
-  references_one :user
   referenced_in :user
   
   vote_point self, :up => +1, :down => -1
