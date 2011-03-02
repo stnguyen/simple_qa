@@ -1,4 +1,5 @@
 <h2><%= @question.title %></h2>
+<p class="author">by <%= link_to @question.user.email, "questions" %>
 <p><%= @question.body %></p>
 
 <div id="actions">
@@ -6,7 +7,9 @@
 	<%= link_to "Vote down", vote_question_path(@question, :down) %> |
 	<%= link_to "Edit", edit_question_path(@question) %> |
 	<%= link_to "View all", questions_path %> |
-	<%= link_to "Delete", @question, :confirm => "Are you sure?", :method => :delete %>
+	<%= link_to "Delete", @question, :confirm => "Are you sure?", 
+				:method => :delete, :remote => :true, :class => 'alert' %>
+
 </div>
 
 <p class="summary"><%= @question.up_votes_count %> up votes, <%= @question.down_votes_count %> down votes, <%= @question.votes_point %> points for this question.</p>

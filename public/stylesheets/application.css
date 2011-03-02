@@ -178,3 +178,16 @@ a:hover {
 p.summary {
 	color: #555;
 }
+
+p.author {
+	color: #555;
+	font-style: italic;
+}
+
+a.button {
+	background: #555;
+	color: white;
+	padding: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}

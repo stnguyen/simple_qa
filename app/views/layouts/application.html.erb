@@ -15,7 +15,7 @@
 			<ul id="nav">
 				<% if current_user %>
 					Wanna ask something? You can
-					<li><%= link_to "Raise a new question", new_question_path %></li>
+					<li><%= link_to "Raise a new question", new_question_path, :class => "button" %></li>
 					, view list of 
 					<li><%= link_to "Your questions", "user_path(current_user)" %></li>	
 					or 		

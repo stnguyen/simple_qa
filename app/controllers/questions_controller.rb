@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   def index
     @questions = Question.all
   end
@@ -9,6 +11,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(params[:question])
+    @question.user_id = current_user.id
     
     if @question.save
       redirect_to question_path(@question), :notice => "Your question has been submitted successfully!"
@@ -31,7 +34,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
     
-    redirect_to questions_path, :notice => "Your question has been deleted!"
+    redirect_to questions_url, :notice => "Your question has been deleted!"
   end
 
   def make_vote
