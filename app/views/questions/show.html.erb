@@ -1,5 +1,5 @@
 <h2><%= @question.title %></h2>
-<p class="author">by <%= link_to @question.user.email, "questions" %>
+<p class="author">by <%= @question.user.email %>
 <p><%= @question.body %></p>
 
 <p class="summary-<%= @question.votes_point >= 0 ? :positive : :negative %>">
@@ -36,9 +36,9 @@
 </div>
 
 <h3>Answers</h3>
-<%= render :partial => "answers/answer", :collection => @question.answers %>
+<%= render :partial => "answers/answer", :collection => @question.answers.sort { |a, b| b.votes_point <=> a.votes_point } %>
 
-<% form_for [@question, @answer] do |f| -%>
+<%= form_for [@question, @answer] do |f| -%>
 	<% if @answer.errors.any? %>
 	  <div class="error_messages">
 	      <h2>

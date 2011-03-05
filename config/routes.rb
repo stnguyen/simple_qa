@@ -3,6 +3,7 @@ SimpleQa::Application.routes.draw do
     resources :answers
   end
   match 'questions/:id/vote/:value' => 'questions#make_vote', :as => :vote_question
+  match 'answers/:id/vote/:value' => 'answers#make_vote', :as => :vote_answer
 
   root :to => "questions#index"
 

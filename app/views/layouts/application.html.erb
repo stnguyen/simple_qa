@@ -16,8 +16,6 @@
 				<% if current_user %>
 					Wanna ask something? You can
 					<li><%= link_to "Raise a new question", new_question_path, :class => "button" %></li>
-					, view list of 
-					<li><%= link_to "Your questions", "user_path(current_user)" %></li>	
 					or 		
 					<li><%= link_to "Log out", destroy_user_session_path %></li>	
 				<% else %>
@@ -35,6 +33,7 @@
 		
 			<!-- content -->
 			<%= yield %>
+                        <%= debug(params) if Rails.env.development? %>
 			
 			<!-- footer -->
 			<p id="footer">
