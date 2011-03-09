@@ -12,23 +12,27 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:question_id])
-    @answer = @question.answers.find(params[:id])
+    @answer = Answer.find(params[:id])
     @answer.destroy
 
-    redirect_to @question, :notice => "Your answer has been deleted!"
+    redirect_to question_url(params[:question_id]), :notice => "Your answer has been deleted!"
   end
-
-  def make_vote
+  
+  def unvote
     @answer = Answer.find(params[:id])
-    
-    value = params[:value].to_sym
-    if value == :unvote
-      current_user.unvote(@answer)
-    else
-      current_user.vote(:votee => @answer, :value => value)
-    end
-    
-    redirect_to question_path(@answer.question), :notice => "Your vote/unvote is successfully submitted."
+    current_user.unvote(@answer)
+    redirect_to question_url(params[:question_id]), :notice => "Unvote is successfully submitted."
+  end
+  
+  def vote_down
+    @answer = Answer.find(params[:id])
+    current_user.vote(@answer, :down)
+    redirect_to question_url(params[:question_id]), :notice => "Vote down is successfully submitted."
+  end
+  
+  def vote_up
+    @answer = Answer.find(params[:id])
+    current_user.vote(@answer, :up)
+    redirect_to question_url(params[:question_id]), :notice => "Vote up is successfully submitted."
   end
 end

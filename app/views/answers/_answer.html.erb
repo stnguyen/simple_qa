@@ -1,35 +1,36 @@
-<%- answer = @question.answers.first if answer.user == nil %>
 <div class="answer">
-  <p class="header">by <%= answer.user.email %> on <%= answer.created_at %> </p>
+  <p class="header">by <%= answer.user.try(:email) %> on <%= answer.created_at %></p>
   <p class="content"><%= answer.content %></p>
   <p class="summary-<%= answer.votes_point >= 0 ? :positive : :negative %>">
     <%= answer.up_votes_count %> up votes, <%= answer.down_votes_count %> down votes, <%= answer.votes_point %> points for this answer.
   </p>
   <div id="actions">
-    <% if user_signed_in? %>
-      <%- voted = current_user.vote_value(answer) %>
-
-      <% if voted %>
-        <%= link_to "Unvote", vote_answer_path(answer, :unvote)%> | 
-
-        <% if voted == :up %>
-          Vote up | 
-          <%= link_to "Vote down", vote_answer_path(answer, :down) %>
-        <% else %>
-          <%= link_to "Vote up", vote_answer_path(answer, :up) %> | 
-          Vote down
-        <% end %>
+    <% unless user_signed_in? %>
+      Please <%= link_to "log in", new_user_session_path %> to vote this answer.<br />
+    <% else %>
+      <% if current_user == answer.user %>
+         <%= link_to "Delete", question_answer_path(@question, answer), :confirm => "Are you sure?", :method => :delete %>
+         | 
+      <% end %>
+      
+      <% voted = current_user.vote_value(answer) %>
+      
+      <% if voted != :up %>
+        <%= link_to "Vote up", vote_up_question_answer_path(@question, answer) %> 
       <% else %>
-        <%= link_to "Vote up", vote_answer_path(answer, :up) %> |	
-        <%= link_to "Vote down", vote_answer_path(answer, :down) %>
+        Vote up
+      <% end %>
+      |
+      <% if voted != :down %>
+        <%= link_to "Vote down", vote_down_question_answer_path(@question, answer) %>
+      <% else %>
+        Vote down
       <% end %>
 
-      <% if current_user.id == answer.user.id %>
-         | <%= link_to "Delete", question_answer_path(answer), :confirm => "Are you sure?", 
-        :method => :delete, :remote => :true, :class => 'alert' %>
+      <% if voted %>
+        |
+        <%= link_to "Unvote", unvote_question_answer_path(@question, answer) %>
+      <% end %>
     <% end %>
-  <% else %>
-    Please <%= link_to "log in", new_user_session_path %> to vote this answer.<br/>
-  <% end %>
-</div>
+  </div>
 </div>

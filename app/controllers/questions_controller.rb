@@ -48,16 +48,21 @@ class QuestionsController < ApplicationController
     redirect_to questions_url, :notice => "Your question has been deleted!"
   end
 
-  def make_vote
+  def unvote
     @question = Question.find(params[:id])
-    
-    value = params[:value].to_sym
-    if value == :unvote
-      current_user.unvote(@question)
-    else
-      current_user.vote(:votee => @question, :value => value)
-    end
-    
-    redirect_to question_path(@question), :notice => "Your vote/unvote is successfully submitted."
+    current_user.unvote(@question)
+    redirect_to question_path(@question), :notice => "Your unvote is successfully submitted."
+  end
+
+  def vote_up
+    @question = Question.find(params[:id])
+    current_user.vote(@question, :up)
+    redirect_to question_path(@question), :notice => "Your vote up is successfully submitted."
+  end
+
+  def vote_down
+    @question = Question.find(params[:id])
+    current_user.vote(@question, :down)
+    redirect_to question_path(@question), :notice => "Your vote down is successfully submitted."
   end
 end

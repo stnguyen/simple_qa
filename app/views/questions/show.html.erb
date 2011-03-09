@@ -7,36 +7,44 @@
 </p>
 
 <div id="actions">
-	<% if user_signed_in? %>
-		<%- voted = current_user.vote_value(@question) %>
-		
-		<% if voted %>
-			<%= link_to "Unvote", vote_question_path(@question, :unvote)%> | 
-			
-			<% if voted == :up %>
-				Vote up | 
-				<%= link_to "Vote down", vote_question_path(@question, :down) %>
-			<% else %>
-				<%= link_to "Vote up", vote_question_path(@question, :up) %> | 
-				Vote down
-			<% end %>
-		<% else %>
-			<%= link_to "Vote up", vote_question_path(@question, :up) %> |	
-			<%= link_to "Vote down", vote_question_path(@question, :down) %>
-		<% end %>
-		
-		<% if current_user.id == @question.user.id %>
-			 | <%= link_to "Edit", edit_question_path(@question) %> |
-			<%= link_to "Delete", @question, :confirm => "Are you sure?", 
-					:method => :delete, :remote => :true, :class => 'alert' %>
-		<% end %>
-	<% else %>
+	<% unless user_signed_in? %>
 		Please <%= link_to "log in", new_user_session_path %> to vote or answer the question.<br/>
+	<% else %>
+  	<% if current_user == @question.user %>
+  		<%= link_to "Edit", edit_question_path(@question) %> |
+  		<%= link_to "Delete", @question, :confirm => "Are you sure?", :method => :delete %>
+  	  | 
+  	<% end %>
+
+	  <% voted = current_user.vote_value(@question) %>
+		
+		<% if voted != :up %>
+		  <%= link_to "Vote up", vote_up_question_path(@question) %>
+		<% else %>
+		  Vote up
+		<% end %>
+		|
+		<% if voted != :down %>
+		  <%= link_to "Vote down", vote_down_question_path(@question) %>
+		<% else %>
+		  Vote down
+		<% end %>
+
+  	<% if voted %>
+  	  |
+  		<%= link_to "Unvote", unvote_question_path(@question) %>
+  	<% end %>
 	<% end %>
 </div>
 
 <h3>Answers</h3>
-<%= render :partial => "answers/answer", :collection => @question.answers.sort { |a, b| b.votes_point <=> a.votes_point } %>
+<% if @question.answers.count == 0 %>
+  There is no answers yet.
+<% else %>
+  <% @question.answers.order(:votes_point).each do |answer| %>
+    <%= render :partial => "answers/answer", :object => answer %>
+  <% end %>
+<% end %>
 
 <%= form_for [@question, @answer] do |f| -%>
 	<% if @answer.errors.any? %>
