@@ -22,11 +22,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
   end
 
   def update
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     
     if @question.update_attributes(params[:question])
       redirect_to question_path(@question), 
@@ -37,31 +37,31 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     @answer = @question.answers.build
   end
 
   def destroy
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     @question.destroy
     
     redirect_to questions_url, :notice => "Your question has been deleted!"
   end
 
   def unvote
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     current_user.unvote(@question)
     redirect_to question_path(@question), :notice => "Your unvote is successfully submitted."
   end
 
   def vote_up
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     current_user.vote(@question, :up)
     redirect_to question_path(@question), :notice => "Your vote up is successfully submitted."
   end
 
   def vote_down
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     current_user.vote(@question, :down)
     redirect_to question_path(@question), :notice => "Your vote down is successfully submitted."
   end

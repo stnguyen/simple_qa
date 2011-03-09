@@ -9,3 +9,5 @@ gem 'nifty-generators'
 gem 'voteable_mongoid'
 gem 'devise'
 gem 'jquery-rails'
+gem 'mongoid_slug', :require => 'mongoid/slug'
+

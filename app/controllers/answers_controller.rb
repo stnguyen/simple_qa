@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def create
-    @question = Question.find(params[:question_id])
+    @question = Question.find_by_slug(params[:question_id])
     @answer = @question.answers.build(params[:answer])
     @answer.user = current_user
     
