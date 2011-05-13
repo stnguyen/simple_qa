@@ -8,6 +8,11 @@ gem 'bson_ext', '~> 1.2'
 gem 'nifty-generators'
 gem 'voteable_mongoid'
 gem 'devise'
+# Asset template engines
+gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+
 gem 'jquery-rails'
 gem 'mongoid_slug', :require => 'mongoid/slug'
 
