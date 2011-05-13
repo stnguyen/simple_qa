@@ -3,43 +3,43 @@
   <head>
     <title>Q&A using votable_mongoid gem</title>
     <%= stylesheet_link_tag "application" %>
-		<%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container">
-			<h1 id="logo"><%= link_to "Q&A System", root_path %></h1>
-			
-			<!-- navigation bar -->
-			<ul id="nav">
-				<% if current_user %>
-					Wanna ask something? You can
-					<li><%= link_to "Raise a new question", new_question_path, :class => "button" %></li>
-					or 		
-					<li><%= link_to "Log out", destroy_user_session_path %></li>	
-				<% else %>
-					Please
-					<li><%= link_to "Log in", new_user_session_path %></li>
-					or <li><%= link_to "Sign up", new_user_registration_path %></li>
-					to raise a question.
-				<% end %>
-			</ul>
-			
+      <h1 id="logo"><%= link_to "Q&A System", root_path %></h1>
+
+      <!-- navigation bar -->
+      <ul id="nav">
+        <% if current_user %>
+          Wanna ask something? You can
+          <li><%= link_to "Raise a new question", new_question_path, :class => "button" %></li>
+          or 		
+          <li><%= link_to "Log out", destroy_user_session_path %></li>	
+        <% else %>
+          Please
+          <li><%= link_to "Log in", new_user_session_path %></li>
+          or <li><%= link_to "Sign up", new_user_registration_path %></li>
+          to raise a question.
+        <% end %>
+      </ul>
+
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
-		
-			<!-- content -->
-			<%= yield %>
-                        <%= debug(params) if Rails.env.development? %>
-			
-			<!-- footer -->
-			<p id="footer">
-			Copyright © 2011 Stefan Nguyen (<%= link_to "vinova.sg", "http://vinova.sg"%>).
-			Theme color is based on <%= link_to "stackoverflow.com", "http://stackoverflow.com" %>
-			</p>
-    </div>
-  </body>
+
+      <!-- content -->
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
+
+      <!-- footer -->
+      <p id="footer">
+        Copyright © 2011 Stefan Nguyen (<%= link_to "vinova.sg", "http://vinova.sg"%>).
+        Theme color is based on <%= link_to "stackoverflow.com", "http://stackoverflow.com" %>
+    </p>
+  </div>
+</body>
 </html>
